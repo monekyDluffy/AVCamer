@@ -277,6 +277,8 @@ typedef NS_ENUM( NSInteger, AVCamDepthDataDeliveryMode ) {
 		We do not create an AVCaptureMovieFileOutput when setting up the session because the
 		AVCaptureMovieFileOutput does not support movie recording with AVCaptureSessionPresetPhoto.
 	*/
+
+    
 	self.session.sessionPreset = AVCaptureSessionPresetHigh;
 	
 	// Add video input.
@@ -351,10 +353,10 @@ typedef NS_ENUM( NSInteger, AVCamDepthDataDeliveryMode ) {
 		
 		self.photoOutput.highResolutionCaptureEnabled = YES;
 		self.photoOutput.livePhotoCaptureEnabled = self.photoOutput.livePhotoCaptureSupported;
-        self.photoOutput.depthDataDeliveryEnabled = self.photoOutput.depthDataDeliverySupported;
+//        self.photoOutput.depthDataDeliveryEnabled = self.photoOutput.depthDataDeliverySupported;
         
 		self.livePhotoMode = self.photoOutput.livePhotoCaptureSupported ? AVCamLivePhotoModeOn : AVCamLivePhotoModeOff;
-        self.depthDataDeliveryMode = self.photoOutput.depthDataDeliverySupported ? AVCamDepthDataDeliveryModeOn : AVCamDepthDataDeliveryModeOff;
+//        self.depthDataDeliveryMode = self.photoOutput.depthDataDeliverySupported ? AVCamDepthDataDeliveryModeOn : AVCamDepthDataDeliveryModeOff;
         
 		
 		self.inProgressPhotoCaptureDelegates = [NSMutableDictionary dictionary];
@@ -898,8 +900,8 @@ typedef NS_ENUM( NSInteger, AVCamDepthDataDeliveryMode ) {
 		BOOL isSessionRunning = [change[NSKeyValueChangeNewKey] boolValue];
 		BOOL livePhotoCaptureSupported = self.photoOutput.livePhotoCaptureSupported;
 		BOOL livePhotoCaptureEnabled = self.photoOutput.livePhotoCaptureEnabled;
-        BOOL depthDataDeliverySupported = self.photoOutput.depthDataDeliverySupported;
-        BOOL depthDataDeliveryEnabled = self.photoOutput.depthDataDeliveryEnabled;
+//        BOOL depthDataDeliverySupported = self.photoOutput.depthDataDeliverySupported;
+//        BOOL depthDataDeliveryEnabled = self.photoOutput.depthDataDeliveryEnabled;
         
 		dispatch_async( dispatch_get_main_queue(), ^{
 			// Only enable the ability to change camera if the device has more than one camera.
@@ -909,8 +911,8 @@ typedef NS_ENUM( NSInteger, AVCamDepthDataDeliveryMode ) {
 			self.captureModeControl.enabled = isSessionRunning;
 			self.livePhotoModeButton.enabled = isSessionRunning && livePhotoCaptureEnabled;
 			self.livePhotoModeButton.hidden = ! ( isSessionRunning && livePhotoCaptureSupported );
-            self.depthDataDeliveryButton.enabled = isSessionRunning && depthDataDeliveryEnabled ;
-            self.depthDataDeliveryButton.hidden = ! ( isSessionRunning && depthDataDeliverySupported );
+//            self.depthDataDeliveryButton.enabled = isSessionRunning && depthDataDeliveryEnabled ;
+//            self.depthDataDeliveryButton.hidden = ! ( isSessionRunning && depthDataDeliverySupported );
 		} );
 	}
 	else {
